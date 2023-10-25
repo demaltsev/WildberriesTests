@@ -16,6 +16,7 @@
 
     <dependencies>
 
+        <!--logging-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
@@ -43,8 +44,7 @@
         </dependency>
 
 
-
-
+        <!-- Allure-->
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-maven</artifactId>
@@ -170,12 +170,12 @@
             <version>5.2.3</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--            <version>1.18.30</version>-->
-<!--            <scope>provided</scope>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.projectlombok</groupId>-->
+        <!--            <artifactId>lombok</artifactId>-->
+        <!--            <version>1.18.30</version>-->
+        <!--            <scope>provided</scope>-->
+        <!--        </dependency>-->
 
 
     </dependencies>
