@@ -24,7 +24,7 @@ public class MainPageTests extends BaseTest {
         mainPage.openMainPage().clickMainButton();
         log.info("Нажимаем на кнопку wildberries");
         String pageName = driver.getCurrentUrl();
-        Assertions.assertEquals("https://www.wildberries.ru/", pageName);
+        Assertions.assertEquals("https://www.wildberries.ruu/", pageName);
         log.info("Проверка на url сайта");
 
 
