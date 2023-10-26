@@ -22,6 +22,11 @@ public class MainPage extends BasePage {
 
     @FindBy(xpath = "//span[@class='address-item__name-text']//span[contains(text(),'г. Ногинск (Ногинский р-н.), ул. Советская, 43')]")
     private WebElement addressChoosing;
+    @FindBy(xpath = "//ymaps[text()='Найти']")
+    private WebElement clickToFind;
+
+    @FindBy(xpath = "//*[text()='Выбрать']")
+    private WebElement confirmClick;
 
 
 
@@ -50,6 +55,22 @@ public class MainPage extends BasePage {
     public void setAddressInput (String str) {
         addressInput.sendKeys(str);
     }
+
+    public void clickToFindAddress () {
+        clickToFind.click();
+    }
+
+
+    public void clickToChooseAddress () {
+        addressChoosing.click();
+
+    }
+
+    public void clickToConfirmAddress () {
+        confirmClick.click();
+    }
+
+
 
 
 
