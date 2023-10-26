@@ -11,6 +11,18 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[@data-wba-header-name='Main']")
     private WebElement mainButton;
 
+    @FindBy(xpath = "//a[@data-wba-header-name='Cart']")
+    private WebElement bucketButton;
+
+    @FindBy(xpath = "//span[@data-wba-header-name='DLV_Adress']")
+    private WebElement addressButton;
+
+    @FindBy(xpath = "//input[@placeholder='Введите адрес']")
+    private WebElement addressInput;
+
+    @FindBy(xpath = "//span[@class='address-item__name-text']//span[contains(text(),'г. Ногинск (Ногинский р-н.), ул. Советская, 43')]")
+    private WebElement addressChoosing;
+
 
 
     public MainPage (WebDriver driver) {
@@ -26,6 +38,20 @@ public class MainPage extends BasePage {
     public void clickMainButton() {
         mainButton.click();
     }
+
+    public void clickBucketButton() {
+        bucketButton.click();
+    }
+
+    public void clickAddressButton() {
+        addressButton.click();
+    }
+
+    public void setAddressInput (String str) {
+        addressInput.sendKeys(str);
+    }
+
+
 
 
 

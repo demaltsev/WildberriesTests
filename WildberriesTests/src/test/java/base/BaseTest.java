@@ -16,10 +16,11 @@ public class BaseTest {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "\\Users\\Deni\\IdeaProjects\\WildberriesTests\\src\\main\\resources\\chromedriver.exe");
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--window-size=1920,1080");
 //        chromeOptions.addArguments("--user-data-dir=C:\\Users\\Deni\\AppData\\Local\\Google\\Chrome\\User Data");
 //        chromeOptions.addArguments("--profile-directory=Profile 11");
 //        chromeOptions.addArguments("--remote-allow-origins=*");
-    chromeOptions.addArguments("--headless");
+//    chromeOptions.addArguments("--headless");
 
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
