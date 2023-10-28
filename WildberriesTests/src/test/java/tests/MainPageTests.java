@@ -3,9 +3,12 @@ package tests;
 import base.BaseTest;
 import base.TestListener;
 import groovy.util.logging.Slf4j;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,10 +22,10 @@ import java.util.logging.LogManager;
 
 @ExtendWith(TestListener.class)
 public class MainPageTests extends BaseTest {
-    //        private  static Logger log = LoggerFactory.getLogger(MainPageTests.class);
+
     private static Logger log = LoggerFactory.getLogger(MainPageTests.class);
 
-
+    @DisplayName("Тест на кнопку перехода на домашнюю страницу")
     @Test
     public void clickMainPage() {
         //открываем домашнюю страницу wildberries
@@ -81,8 +84,6 @@ public class MainPageTests extends BaseTest {
         log.info("Assert проверка выполнена");
 
     }
-
-
 
 
 }

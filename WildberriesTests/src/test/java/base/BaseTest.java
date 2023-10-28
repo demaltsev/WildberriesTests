@@ -10,8 +10,9 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected static WebDriver driver;
-    private static final int TIME_OUT = 20;
+    private static final int TIME_OUT = 30;
 
+    @SuppressWarnings("unchecked")
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "\\Users\\Deni\\IdeaProjects\\WildberriesTests\\src\\main\\resources\\chromedriver.exe");
@@ -19,32 +20,29 @@ public class BaseTest {
         chromeOptions.addArguments("--window-size=1920,1080");
 //        chromeOptions.addArguments("--user-data-dir=C:\\Users\\Deni\\AppData\\Local\\Google\\Chrome\\User Data");
 //        chromeOptions.addArguments("--profile-directory=Profile 11");
-//        chromeOptions.addArguments("--remote-allow-origins=*");
-//    chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--remote-allow-origins=*");
+//        chromeOptions.addArguments("--headless");
 
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
     }
 
-        @AfterEach
-        public void tearDown() {
-            driver.close();
-            driver.quit();
-        }
-
-
-
-
-
-    public static boolean checkCookiesContains(String key, String value) {
-        return driver.manage().getCookieNamed(key).getValue().contains(value);
+    @AfterEach
+    public void tearDown() {
+        driver.close();
+        driver.quit();
     }
 
-    public static boolean checkCookieEquals(String key, String value) {
-        return driver.manage().getCookieNamed(key).getValue().equals(value);
-    }
 
-    }
+//    public static boolean checkCookiesContains(String key, String value) {
+//        return driver.manage().getCookieNamed(key).getValue().contains(value);
+//    }
+//
+//    public static boolean checkCookieEquals(String key, String value) {
+//        return driver.manage().getCookieNamed(key).getValue().equals(value);
+//    }
+
+}
 
 
