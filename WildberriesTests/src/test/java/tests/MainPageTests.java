@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import base.TestListener;
 import groovy.util.logging.Slf4j;
+import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Assertions;
@@ -27,7 +28,8 @@ public class MainPageTests extends BaseTest {
     private static Logger log = LoggerFactory.getLogger(MainPageTests.class);
 
     @Owner("Denis Maltsev")
-    @DisplayName("Тест на кнопку перехода на домашнюю страницу")
+    @DisplayName("Переход на домашнюю страницу")
+    @Description("Проверка на работу кнопки Wildberries")
     @Test
     public void clickMainPage() {
         //открываем домашнюю страницу wildberries
@@ -59,6 +61,7 @@ public class MainPageTests extends BaseTest {
 
     @Owner("Denis Maltsev")
     @DisplayName("Добавление адреса")
+    @Description("Проверка на добавление существующего адреса доставки")
     @Test
     public void addAddressPage() {
         //открываем домашнюю страницу wildberries
