@@ -1,5 +1,6 @@
 package base;
 
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -11,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
     protected static WebDriver driver;
     private static final int TIME_OUT = 30;
+
 
     @SuppressWarnings("unchecked")
     @BeforeEach

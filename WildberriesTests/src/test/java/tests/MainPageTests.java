@@ -54,7 +54,7 @@ public class MainPageTests extends BaseTest {
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(By.id("")));
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='app-store']")));
     }
-
+    @DisplayName("Добавление адреса")
     @Test
     public void addAddressPage() {
         //открываем домашнюю страницу wildberries

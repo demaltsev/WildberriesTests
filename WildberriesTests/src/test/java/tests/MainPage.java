@@ -1,6 +1,7 @@
 package tests;
 
 import base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -29,10 +30,9 @@ public class MainPage extends BasePage {
     private WebElement confirmClick;
 
 
-
-    public MainPage (WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver,this);
+    public MainPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
     public MainPage openMainPage() {
@@ -40,6 +40,7 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    @Step("Кликаме мейн кнопку")
     public void clickMainButton() {
         mainButton.click();
     }
@@ -52,28 +53,24 @@ public class MainPage extends BasePage {
         addressButton.click();
     }
 
-    public void setAddressInput (String str) {
+    public void setAddressInput(String str) {
         addressInput.sendKeys(str);
     }
 
-    public void clickToFindAddress () {
+    public void clickToFindAddress() {
         clickToFind.click();
     }
 
 
-    public void clickToChooseAddress () {
+    public void clickToChooseAddress() {
         addressChoosing.click();
 
     }
 
-    public void clickToConfirmAddress () {
+
+    public void clickToConfirmAddress() {
         confirmClick.click();
     }
-
-
-
-
-
 
 
 }

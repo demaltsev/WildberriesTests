@@ -10,16 +10,19 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <junit.version>5.6.2</junit.version>
-        <maven-surefire.version>3.0.0-M1</maven-surefire.version>
-        <aspectj.version>1.9.7</aspectj.version>
+        <maven-surefire.version>3.0.0</maven-surefire.version>
         <allure-maven.version>2.12.0</allure-maven.version>
         <reportVersion.version>2.4.1</reportVersion.version>
+        <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
+        <junit.version>5.6.2</junit.version>
+        <selenium-devtools.version>4.0.0-rc-1</selenium-devtools.version>
         <selenium-java.version>3.141.59</selenium-java.version>
+        <selenide.version>6.12.4</selenide.version>
+        <aspectj.version>1.9.7</aspectj.version>
         <webdrivermanager.version>5.5.3</webdrivermanager.version>
-        <slf4j-simple.version>1.7.30</slf4j-simple.version>
         <allure.results.directory>allure-results</allure.results.directory>
     </properties>
 
@@ -30,9 +33,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>${maven-surefire.version}</version>
                 <configuration>
                     <useFile>false</useFile>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
             </plugin>
             <!--Allure плагин-->
@@ -45,11 +51,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.9.0</version>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
 
         </plugins>
     </build>
+
+
 
     <dependencies>
         <!-- aspectj -->
@@ -71,14 +79,14 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-devtools</artifactId>
-            <version>4.0.0-rc-1</version>
+            <version>${selenium-devtools.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>6.12.4</version>
+            <version>${selenide.version}</version>
             <scope>test</scope>
         </dependency>
 
