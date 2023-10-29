@@ -33,20 +33,20 @@ public class BaseTest {
     }
 
 
-    @AfterEach
+    @AfterClass
     public void tearDown() {
         driver.close();
         driver.quit();
     }
 
 
-//    public static boolean checkCookiesContains(String key, String value) {
-//        return driver.manage().getCookieNamed(key).getValue().contains(value);
-//    }
-//
-//    public static boolean checkCookieEquals(String key, String value) {
-//        return driver.manage().getCookieNamed(key).getValue().equals(value);
-//    }
+    public static boolean checkCookiesContains(String key, String value) {
+        return driver.manage().getCookieNamed(key).getValue().contains(value);
+    }
+
+    public static boolean checkCookieEquals(String key, String value) {
+        return driver.manage().getCookieNamed(key).getValue().equals(value);
+    }
 
 }
 

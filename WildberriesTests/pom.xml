@@ -17,7 +17,7 @@
         <allure-maven.version>2.12.0</allure-maven.version>
         <reportVersion.version>2.4.1</reportVersion.version>
         <maven-compiler-plugin.version>3.9.0</maven-compiler-plugin.version>
-        <junit.version>5.6.2</junit.version>
+        <junit.version>5.7.2</junit.version>
         <selenium-devtools.version>4.0.0-rc-1</selenium-devtools.version>
         <selenium-java.version>3.141.59</selenium-java.version>
         <selenide.version>6.12.4</selenide.version>
@@ -106,6 +106,14 @@
             <version>5.7.2</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.2</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>

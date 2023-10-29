@@ -1,6 +1,6 @@
 package base;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+
 import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import lombok.SneakyThrows;
@@ -33,7 +33,8 @@ public class TestListener implements TestWatcher {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после падения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        WebDriverManager.chromedriver().quit();
+       driver.quit();
+       driver.close();
     }
     @Attachment
     @SneakyThrows
@@ -43,15 +44,11 @@ public class TestListener implements TestWatcher {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после успешного прохождения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        WebDriverManager.chromedriver().quit();
-
-    }
-
-    @AfterEach
-    public void tearDown() {
-        driver.close();
         driver.quit();
+        driver.close();
+
     }
+
 }
 
 
