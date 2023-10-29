@@ -34,40 +34,42 @@ public class MainPage extends BasePage {
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
-
+    @Step("Открываем главную страницу Wildberries")
     public MainPage openMainPage() {
         driver.get("https://www.wildberries.ru/");
         return this;
     }
 
-    @Step("Кликаме мейн кнопку")
-    public void clickMainButton() {
-        mainButton.click();
-    }
-
+    @Step("Нажимаем на кнопку 'Корзина'")
     public void clickBucketButton() {
         bucketButton.click();
     }
 
+    @Step("Нажимаем на кнопку Wildberries")
+    public void clickMainButton() {
+        mainButton.click();
+    }
+
+    @Step("Нажимаем на кнопку 'Адрес'")
     public void clickAddressButton() {
         addressButton.click();
     }
-
+    @Step("Вводим в поле ввода адреса существующий адрес")
     public void setAddressInput(String str) {
         addressInput.sendKeys(str);
     }
-
+    @Step("Нажимаем на кнопку 'Поиск'")
     public void clickToFindAddress() {
         clickToFind.click();
     }
 
-
+    @Step("Выбраем нужный адрес")
     public void clickToChooseAddress() {
         addressChoosing.click();
 
     }
 
-
+    @Step("Нажимаем на кнопку 'Подтвердить'")
     public void clickToConfirmAddress() {
         confirmClick.click();
     }

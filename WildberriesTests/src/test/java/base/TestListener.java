@@ -2,6 +2,7 @@ package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Attachment;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -15,13 +16,15 @@ import static base.BaseTest.driver;
 
 public class TestListener implements TestWatcher {
 
-
+    //    @Attachment
 //    @Override
 //    public void testFailed(ExtensionContext context, Throwable cause) {
 //        Allure.getLifecycle().addAttachment("screenshot", "image/png", "png", ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
 //        driver.close();
 //        driver.quit();
-
+//    }
+//}
+    @Attachment
     @SneakyThrows
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
@@ -32,7 +35,7 @@ public class TestListener implements TestWatcher {
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
         WebDriverManager.chromedriver().quit();
     }
-
+    @Attachment
     @SneakyThrows
     @Override
     public void testSuccessful(ExtensionContext context) {
@@ -43,12 +46,13 @@ public class TestListener implements TestWatcher {
         WebDriverManager.chromedriver().quit();
 
     }
+
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
         driver.quit();
     }
-
 }
+
 
 

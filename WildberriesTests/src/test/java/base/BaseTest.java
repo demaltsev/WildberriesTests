@@ -1,6 +1,8 @@
 package base;
 
 import io.qameta.allure.Step;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +31,7 @@ public class BaseTest {
         driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
     }
+
 
     @AfterEach
     public void tearDown() {

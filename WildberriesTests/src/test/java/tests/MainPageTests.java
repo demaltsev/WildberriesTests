@@ -3,6 +3,7 @@ package tests;
 import base.BaseTest;
 import base.TestListener;
 import groovy.util.logging.Slf4j;
+import io.qameta.allure.Owner;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -25,6 +26,7 @@ public class MainPageTests extends BaseTest {
 
     private static Logger log = LoggerFactory.getLogger(MainPageTests.class);
 
+    @Owner("Denis Maltsev")
     @DisplayName("Тест на кнопку перехода на домашнюю страницу")
     @Test
     public void clickMainPage() {
@@ -54,6 +56,8 @@ public class MainPageTests extends BaseTest {
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(By.id("")));
 //        new WebDriverWait(driver, Duration.ofSeconds(3)).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='app-store']")));
     }
+
+    @Owner("Denis Maltsev")
     @DisplayName("Добавление адреса")
     @Test
     public void addAddressPage() {
@@ -84,6 +88,8 @@ public class MainPageTests extends BaseTest {
         log.info("Assert проверка выполнена");
 
     }
+
+
 
 
 }
