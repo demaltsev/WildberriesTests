@@ -1,19 +1,25 @@
 package base;
 
+import com.codeborne.selenide.webdriver.DriverFactory;
 import io.qameta.allure.Step;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected static WebDriver driver;
-    private static final int TIME_OUT = 30;
+    private static final int TIME_OUT = 100;
 
 
     @SuppressWarnings("unchecked")
@@ -33,7 +39,8 @@ public class BaseTest {
     }
 
 
-    @AfterClass
+
+    @AfterEach
     public void tearDown() {
         driver.close();
         driver.quit();
@@ -47,6 +54,7 @@ public class BaseTest {
     public static boolean checkCookieEquals(String key, String value) {
         return driver.manage().getCookieNamed(key).getValue().equals(value);
     }
+
 
 }
 

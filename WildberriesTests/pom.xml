@@ -99,6 +99,16 @@
         </dependency>
 
 
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.5.1</version>
+            <scope>test</scope>
+        </dependency>
+
+
+
         <!-- JUnit5, Jupiter и для поддержки более ранних версий junit -->
         <dependency>
             <groupId>org.junit.vintage</groupId>
