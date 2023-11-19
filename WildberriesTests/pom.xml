@@ -8,6 +8,9 @@
     <artifactId>WildberriesTests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <name>slf4jconfig-log4j</name>
+    <url>http://maven.apache.org</url>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -99,16 +102,6 @@
         </dependency>
 
 
-        <!-- TestNG -->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.5.1</version>
-            <scope>test</scope>
-        </dependency>
-
-
-
         <!-- JUnit5, Jupiter и для поддержки более ранних версий junit -->
         <dependency>
             <groupId>org.junit.vintage</groupId>
@@ -183,7 +176,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.1.0</version>
+            <version>5.3.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -211,33 +204,36 @@
         </dependency>
 
         <!-- для логирования -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.17.2</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>2.17.2</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.2</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.5</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.36</version>
+            <artifactId>slf4j-simple</artifactId>
+            <version>2.0.9</version>
             <scope>test</scope>
         </dependency>
+
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j-impl</artifactId>
+                <version>2.21.1</version>
+                <scope>test</scope>
+            </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.12</version>
+            <scope>test</scope>
+        </dependency>
+
 
         <!-- для рандомных значений -->
         <dependency>

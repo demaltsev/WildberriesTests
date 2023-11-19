@@ -2,9 +2,7 @@ package tests;
 
 import base.BasePage;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,6 +43,15 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//a[@class='product-card__link j-card-link j-open-full-product-card'][1]")
     private WebElement chooseFirstProduct;
 
+    @FindBy(xpath = "//ins[@class='price-block__final-price']")
+    private WebElement nameOfCurrency;
+
+    @FindBy(id = "searchInput")
+    private WebElement searchField;
+
+    @FindBy(xpath = "//div[@class='product-page__header']")
+    private WebElement productName;
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -78,7 +85,7 @@ public class MainPage extends BasePage {
     }
 
 
-    @Step("Вводим в поле ввода адреса существующий адрес")
+    @Step("Вводим в поле ввода адреса существующий адрес: {0}")
     public void setAddressInput(String str) {
         addressInput.sendKeys(str);
     }
@@ -110,7 +117,6 @@ public class MainPage extends BasePage {
     }
 
     @Step("Выбираем валюту")
-
     public void clickToChooseCurrency() {
         currencyChoosing.click();
     }
@@ -124,6 +130,31 @@ public class MainPage extends BasePage {
         }
         chooseFirstProduct.click();
     }
+
+
+    @Step("Используем скрипт для проверки изменения валюты")
+    public String takeTextWithJS() {
+        String text = ((JavascriptExecutor) driver).executeScript("return arguments[0].innerText;", nameOfCurrency).toString().trim();
+        return text;
+    }
+
+    @Step("Нажимаем на поле поиска")
+    public void clickToSearchField () {
+        searchField.click();
+    }
+
+    @Step("Вводим номер артикула: {0}")
+    public void sendArticulKeys (String str) {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        searchField.sendKeys(str);
+        searchField.sendKeys(Keys.ENTER);
+    }
+
+
 
 
 }

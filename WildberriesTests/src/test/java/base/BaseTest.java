@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
+
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +22,7 @@ public class BaseTest {
     private static final int TIME_OUT = 100;
 
 
-    @SuppressWarnings("unchecked")
+
     @BeforeEach
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "\\Users\\Deni\\IdeaProjects\\WildberriesTests\\src\\main\\resources\\chromedriver.exe");
@@ -31,7 +31,7 @@ public class BaseTest {
 //        chromeOptions.addArguments("--user-data-dir=C:\\Users\\Deni\\AppData\\Local\\Google\\Chrome\\User Data");
 //        chromeOptions.addArguments("--profile-directory=Profile 11");
         chromeOptions.addArguments("--remote-allow-origins=*");
-//        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
 
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
