@@ -19,6 +19,10 @@ import org.slf4j.LoggerFactory;
 public class MainPageTests extends BaseTest {
 
     private WebElement webElement;
+    private String pageName;
+    private static String URL="https://www.wildberries.ru/";
+
+    private  static String productId = "111160257";
 
     private static Logger log = LoggerFactory.getLogger(MainPageTests.class);
 
@@ -37,8 +41,8 @@ public class MainPageTests extends BaseTest {
         log.info("Нажимаем на кнопку 'Корзина'");
 
         //проверяем url bucket страницы
-        String pageName = driver.getCurrentUrl();
-        Assertions.assertEquals("https://www.wildberries.ru/lk/basket", pageName);
+        pageName = driver.getCurrentUrl();
+        Assertions.assertEquals(URL+"lk/basket", pageName);
         log.info("Проверка на url пройдена");
 
         //кликаем на баннер wildberries
@@ -47,7 +51,7 @@ public class MainPageTests extends BaseTest {
 
         //проверяем url main страницы
         pageName = driver.getCurrentUrl();
-        Assertions.assertEquals("https://www.wildberries.ru/", pageName);
+        Assertions.assertEquals(URL, pageName);
         log.info("Assert проверка на url пройдена");
 
     }
@@ -105,9 +109,9 @@ public class MainPageTests extends BaseTest {
         log.info("Assert проверка на AMD пройдена");
 
         mainPage.clickAtFirstProduct();
-        log.info("Кликаем на первый товар");
+        log.info("Нажимаем на первый (любой) товар");
 
-        Assertions.assertEquals(mainPage.takeTextWithJS().substring(mainPage.takeTextWithJS().length() - 4, mainPage.takeTextWithJS().length()), "драм");
+        Assertions.assertEquals(mainPage.takeCurrencyTextJS().substring(mainPage.takeCurrencyTextJS().length() - 4, mainPage.takeCurrencyTextJS().length()), "драм");
         log.info("Assert проверка 'драм'  пройдена");
     }
 
@@ -122,14 +126,43 @@ public class MainPageTests extends BaseTest {
         mainPage.openMainPage().clickToSearchField();
         log.info("Нажимаем на поле поиска");
 
-        mainPage.sendArticulKeys("111160257");
+        mainPage.sendArticulKeys(productId);
         log.info("Вводим номер артикула и нажимаем ENTER");
 
         webElement = driver.findElement(By.xpath("//div[@class='product-page__header']"));
         Assertions.assertEquals(webElement.getText(), "FRESHLAND Влажные детские салфетки ДПантенол Зайка 3х120 шт с клапаном");
         log.info("Assert проверка на название товара пройдена");
 
+        pageName = driver.getCurrentUrl();
+        String trueCurrentPage = URL + "catalog/"+ productId + "/detail.aspx?targetUrl=SP";
+        Assertions.assertEquals(pageName,trueCurrentPage);
+        log.info("Assert проверка на адрес страницы пройдена");
+
+
+
+
     }
+
+    @Owner("Denis Maltsev")
+    @DisplayName("Добавление в корзину")
+    @Description("Добавление в корзину, проверяем все названия и факт добавления")
+    @Test
+    public void addToCurt() {
+        MainPage mainPage = new MainPage(driver);
+        log.info("Запуск домашней страницы Wildberries");
+
+        mainPage.openMainPage().clickAtFirstProduct();
+        log.info("Нажимаем на первый (любой) товар");
+
+        mainPage.clickToAddInCurt();
+        log.info("Нажимаем на кнопку 'Добавить в корзину'");
+
+       mainPage.clickBucketButton();
+       log.info("Нажимаем на кнопку 'Корзина'");
+
+    }
+
+
 }
 
 

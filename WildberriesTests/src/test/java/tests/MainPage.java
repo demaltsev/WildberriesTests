@@ -52,6 +52,14 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//div[@class='product-page__header']")
     private WebElement productName;
 
+    @FindBy(xpath = "//button[@class='btn-main']")
+    private WebElement addToCart;
+
+
+
+
+
+
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -133,7 +141,7 @@ public class MainPage extends BasePage {
 
 
     @Step("Используем скрипт для проверки изменения валюты")
-    public String takeTextWithJS() {
+    public String takeCurrencyTextJS() {
         String text = ((JavascriptExecutor) driver).executeScript("return arguments[0].innerText;", nameOfCurrency).toString().trim();
         return text;
     }
@@ -153,6 +161,22 @@ public class MainPage extends BasePage {
         searchField.sendKeys(str);
         searchField.sendKeys(Keys.ENTER);
     }
+
+    @Step("Добавляем в корзину")
+    public void clickToAddInCurt() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        addToCart.click();
+    }
+
+    @Step("Используем скрипт для проверки изменения валюты")
+    public void clickToCurtJS() {
+       ((JavascriptExecutor) driver).executeScript("arguments[0].click();",addToCart);
+    }
+
 
 
 
