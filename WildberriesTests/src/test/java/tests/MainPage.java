@@ -55,6 +55,15 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//button[@class='btn-main']")
     private WebElement addToCart;
 
+    @FindBy(xpath = "//div[@class='count__input-number']//input[@min='1']")
+    private WebElement takeNumberInCurt;
+
+    @FindBy(xpath = "//button[@class='btn__del j-basket-item-del']")
+    private WebElement deleteCurtButton;
+
+
+
+
 
 
 
@@ -177,7 +186,16 @@ public class MainPage extends BasePage {
        ((JavascriptExecutor) driver).executeScript("arguments[0].click();",addToCart);
     }
 
+    @Step("Берём число")
+    public String takingNumberInCurt() {
+        return takeNumberInCurt.getAttribute("min");
+    }
 
+
+    @Step("Удаляем из корзины")
+    public void clickToDeleteCurt() {
+        deleteCurtButton.click();
+    }
 
 
 
