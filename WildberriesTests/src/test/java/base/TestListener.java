@@ -5,6 +5,7 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Attachment;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.OutputType;
@@ -24,6 +25,15 @@ public class TestListener implements TestWatcher {
 //        driver.quit();
 //    }
 //}
+
+
+    @AfterEach
+    public void tearDown() {
+        driver.close();
+        driver.quit();
+    }
+
+
     @Attachment
     @SneakyThrows
     @Override
@@ -33,8 +43,6 @@ public class TestListener implements TestWatcher {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после падения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-       driver.quit();
-       driver.close();
     }
     @Attachment
     @SneakyThrows
@@ -44,8 +52,7 @@ public class TestListener implements TestWatcher {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после успешного прохождения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-        driver.quit();
-        driver.close();
+
 
     }
 

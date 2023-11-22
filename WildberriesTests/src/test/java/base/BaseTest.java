@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class BaseTest {
     protected static WebDriver driver;
-    private static final int TIME_OUT = 100;
+    private static final int TIME_OUT = 15;
 
 
 
@@ -31,7 +31,7 @@ public class BaseTest {
 //        chromeOptions.addArguments("--user-data-dir=C:\\Users\\Deni\\AppData\\Local\\Google\\Chrome\\User Data");
 //        chromeOptions.addArguments("--profile-directory=Profile 11");
         chromeOptions.addArguments("--remote-allow-origins=*");
-//        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--headless");
 
         driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);

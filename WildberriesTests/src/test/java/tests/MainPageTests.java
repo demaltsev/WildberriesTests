@@ -143,8 +143,8 @@ public class MainPageTests extends BaseTest {
     }
 
     @Owner("Denis Maltsev")
-    @DisplayName("Добавление в корзину")
-    @Description("Добавление в корзину, проверяем все названия и факт добавления")
+    @DisplayName("Добавление в корзину, удаление из корзины")
+    @Description("Добавление в корзину, проверяем все названия и факт добавления, удаляем из корзины")
     @Test
     public void addToCurt() {
         MainPage mainPage = new MainPage(driver);
