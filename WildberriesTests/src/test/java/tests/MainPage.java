@@ -83,6 +83,11 @@ public class MainPage extends BasePage {
 
     @Step("Нажимаем на кнопку 'Корзина'")
     public void clickBucketButton() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         bucketButton.click();
     }
 
@@ -135,6 +140,11 @@ public class MainPage extends BasePage {
 
     @Step("Выбираем валюту")
     public void clickToChooseCurrency() {
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         currencyChoosing.click();
     }
 

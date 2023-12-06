@@ -17,32 +17,18 @@ import static base.BaseTest.driver;
 
 public class TestListener implements TestWatcher {
 
-    //    @Attachment
-//    @Override
-//    public void testFailed(ExtensionContext context, Throwable cause) {
-//        Allure.getLifecycle().addAttachment("screenshot", "image/png", "png", ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
-//        driver.close();
-//        driver.quit();
-//    }
-//}
-
-
-    @AfterEach
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
-
 
     @Attachment
     @SneakyThrows
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-
         Allure.getLifecycle().addAttachment("Скриншот на месте падения теста", "image/png", "png",
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после падения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
+        driver.close();
+        driver.quit();
+
     }
     @Attachment
     @SneakyThrows
@@ -52,9 +38,14 @@ public class TestListener implements TestWatcher {
                 ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         Allure.addAttachment("Логи после успешного прохождения теста: ",
                 String.valueOf(driver.manage().logs().get(LogType.BROWSER).getAll()));
-
+        driver.close();
+        driver.quit();
 
     }
+
+
+
+
 
 }
 

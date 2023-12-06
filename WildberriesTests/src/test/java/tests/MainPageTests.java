@@ -5,6 +5,8 @@ import base.TestListener;
 import io.qameta.allure.Description;
 import io.qameta.allure.Owner;
 import org.apache.log4j.PropertyConfigurator;
+import org.junit.Ignore;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,12 +22,14 @@ public class MainPageTests extends BaseTest {
 
     private WebElement webElement;
     private String PAGE_NAME;
+    private String PRODUCT_NAME;
     private String TEXT;
     private static String URL = "https://www.wildberries.ru/";
 
     private static String productId = "111160257";
 
     private static Logger log = LoggerFactory.getLogger(MainPageTests.class);
+
 
     @Owner("Denis Maltsev")
     @DisplayName("Переход на домашнюю страницу")
@@ -134,13 +138,14 @@ public class MainPageTests extends BaseTest {
         Assertions.assertEquals(webElement.getText(), "FRESHLAND Влажные детские салфетки ДПантенол Зайка 3х120 шт с клапаном");
         log.info("Assert проверка на название товара пройдена");
 
-        PAGE_NAME= driver.getCurrentUrl();
+        PAGE_NAME = driver.getCurrentUrl();
         String trueCurrentPage = URL + "catalog/" + productId + "/detail.aspx?targetUrl=SP";
         Assertions.assertEquals(PAGE_NAME, trueCurrentPage);
         log.info("Assert проверка на адрес страницы пройдена");
 
 
     }
+
 
     @Owner("Denis Maltsev")
     @DisplayName("Добавление в корзину, удаление из корзины")
@@ -150,21 +155,30 @@ public class MainPageTests extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         log.info("Запуск домашней страницы Wildberries");
 
-        mainPage.openMainPage().clickAtFirstProduct();
-        log.info("Нажимаем на первый (любой) товар");
+//        mainPage.openMainPage().clickAtFirstProduct();
+//        log.info("Нажимаем на первый (любой) товар");
+
+        mainPage.openMainPage().clickToSearchField();
+        log.info("Нажимаем на поле поиска");
+
+        mainPage.sendArticulKeys(productId);
+        log.info("Вводим номер артикула и нажимаем ENTER");
 
         mainPage.clickToAddInCurt();
         log.info("Нажимаем на кнопку 'Добавить в корзину'");
 
-//        productName = driver.findElement(By.xpath("//div[@class='product-page__header']")).getText();
+//        PRODUCT_NAME = driver.findElement(By.xpath("//div[@class='product-page__header']")).getText();
 //        log.info("Копируем имя товара");
-//        String productName2 = driver.findElement(By.xpath("//a[@class='good-info__title j-product-popup']")).getText();
+//
+//        String PRODUCT_NAME2 = driver.findElement(By.xpath("//a[@class='good-info__title j-product-popup']")).getText();
+//        Assertions.assertEquals(PRODUCT_NAME, PRODUCT_NAME2);
 //        log.info("Assert проверка на название товара пройдена");
+
 
         mainPage.clickBucketButton();
         log.info("Нажимаем на кнопку 'Корзина'");
 
-        Assertions.assertEquals("1",mainPage.takingNumberInCurt());
+        Assertions.assertEquals("1", mainPage.takingNumberInCurt());
         log.info("Проверяем кол-во товаров в корзине");
 
         mainPage.clickToDeleteCurt();
@@ -174,8 +188,6 @@ public class MainPageTests extends BaseTest {
         Assertions.assertEquals(TEXT, "В корзине пока пусто");
         log.info("Проверяем кол-во товаров в корзине");
     }
-
-
 
 
 }

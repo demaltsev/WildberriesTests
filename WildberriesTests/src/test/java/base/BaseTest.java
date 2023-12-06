@@ -38,11 +38,6 @@ public class BaseTest {
         driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
     }
 
-    @AfterEach
-    public void tearDown() {
-        driver.close();
-        driver.quit();
-    }
 
 
     public static boolean checkCookiesContains(String key, String value) {
