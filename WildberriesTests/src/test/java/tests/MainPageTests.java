@@ -22,7 +22,6 @@ public class MainPageTests extends BaseTest {
 
     private WebElement webElement;
     private String PAGE_NAME;
-    private String PRODUCT_NAME;
     private String TEXT;
     private static String URL = "https://www.wildberries.ru/";
 
@@ -37,24 +36,24 @@ public class MainPageTests extends BaseTest {
     @Test
     public void clickMainPage() {
 
-        //открываем домашнюю страницу wildberries
+        //открыть домашнюю страницу wildberries
         MainPage mainPage = new MainPage(driver);
         log.info("Запуск домашней страницы Wildberries");
 
-        //кликаем на корзину
+        //нажать  на корзину
         mainPage.openMainPage().clickBucketButton();
-        log.info("Нажимаем на кнопку 'Корзина'");
+        log.info("нажать на кнопку 'Корзина'");
 
-        //проверяем url bucket страницы
+        //проверить url bucket страницы
         PAGE_NAME = driver.getCurrentUrl();
         Assertions.assertEquals(URL + "lk/basket", PAGE_NAME);
         log.info("Проверка на url пройдена");
 
-        //кликаем на баннер wildberries
+        //нажать  на баннер wildberries
         mainPage.clickMainButton();
-        log.info("Нажимаем на кнопку 'Wildberries'");
+        log.info("нажать на кнопку 'Wildberries'");
 
-        //проверяем url main страницы
+        //проверить url main страницы
         PAGE_NAME = driver.getCurrentUrl();
         Assertions.assertEquals(URL, PAGE_NAME);
         log.info("Assert проверка на url пройдена");
@@ -66,26 +65,26 @@ public class MainPageTests extends BaseTest {
     @Description("Проверка на добавление существующего адреса доставки")
     @Test
     public void addAddressPage() {
-        //открываем домашнюю страницу wildberries
+        //открыть домашнюю страницу wildberries
         MainPage mainPage = new MainPage(driver);
         log.info("Запуск домашней страницы Wildberries");
 
-        //нажимаем на поле поиска и вводим адрес
+        //нажать на поле поиска и ввести адрес
         mainPage.openMainPage().clickAddressButton();
         mainPage.setAddressInput("г. Ногинск (Ногинский р-н.), ул. Советская, 43");
-        log.info("Нажимаем на поле поиска и вводим адрес");
+        log.info("нажать на поле поиска и ввести адрес");
 
-        //нажимаем найти
+        //нажать найти
         mainPage.clickToFindAddress();
-        log.info("Нажимаем на кнопку найти");
+        log.info("нажать на кнопку найти");
 
-        //выбираем наш адрес из списка
+        //выбрать наш адрес из списка
         mainPage.clickToChooseAddress();
-        log.info("Выбираем адрес из списка");
+        log.info("выбрать адрес из списка");
 
-        //подтверждаем выбор
+        //подтвердить выбор
         mainPage.clickToConfirmAddress();
-        log.info("Подтверждаем выбор адреса");
+        log.info("подтвердить выбор адреса");
 
         //проверка отображения адреса в верхней части сайта
         webElement = driver.findElement(By.xpath("//span[@data-wba-header-name='DLV_Adress']"));
@@ -102,22 +101,11 @@ public class MainPageTests extends BaseTest {
         MainPage mainPage = new MainPage(driver);
         log.info("Запуск домашней страницы Wildberries");
 
-        //нажимаем на поле поиска и вводим адрес
-        mainPage.openMainPage().clickCurrencyButton();
-        log.info("Нажимаем на кнопку валюты");
+        mainPage.openMainPage().clickAtFirstProduct();
+        log.info("нажать на первый (любой) товар");
 
-        mainPage.clickToChooseCurrency();
-        log.info("Выбираем валюту");
-
-        webElement = driver.findElement(By.xpath("//span[@class='simple-menu__currency'][contains(text(), 'AMD')]"));
-        Assertions.assertEquals(webElement.getText(), "AMD");
-        log.info("Assert проверка на AMD пройдена");
-
-        mainPage.clickAtFirstProduct();
-        log.info("Нажимаем на первый (любой) товар");
-
-        Assertions.assertEquals(mainPage.takeCurrencyTextJS().substring(mainPage.takeCurrencyTextJS().length() - 4, mainPage.takeCurrencyTextJS().length()), "драм");
-        log.info("Assert проверка 'драм'  пройдена");
+        Assertions.assertEquals(mainPage.takeCurrencyTextJS().substring(mainPage.takeCurrencyTextJS().length() - 1, mainPage.takeCurrencyTextJS().length()), "₽");
+        log.info("Assert проверка '₽'  пройдена");
     }
 
     @Owner("Denis Maltsev")
@@ -129,10 +117,10 @@ public class MainPageTests extends BaseTest {
         log.info("Запуск домашней страницы Wildberries");
 
         mainPage.openMainPage().clickToSearchField();
-        log.info("Нажимаем на поле поиска");
+        log.info("нажать на поле поиска");
 
         mainPage.sendArticulKeys(productId);
-        log.info("Вводим номер артикула и нажимаем ENTER");
+        log.info("ввести номер артикула и нажать ENTER");
 
         webElement = driver.findElement(By.xpath("//div[@class='product-page__header']"));
         Assertions.assertEquals(webElement.getText(), "FRESHLAND Влажные детские салфетки ДПантенол Зайка 3х120 шт с клапаном");
@@ -149,44 +137,33 @@ public class MainPageTests extends BaseTest {
 
     @Owner("Denis Maltsev")
     @DisplayName("Добавление в корзину, удаление из корзины")
-    @Description("Добавление в корзину, проверяем все названия и факт добавления, удаляем из корзины")
+    @Description("Добавление в корзину, проверить все названия и факт добавления, удаляем из корзины")
     @Test
     public void addToCurt() {
         MainPage mainPage = new MainPage(driver);
         log.info("Запуск домашней страницы Wildberries");
 
-//        mainPage.openMainPage().clickAtFirstProduct();
-//        log.info("Нажимаем на первый (любой) товар");
-
         mainPage.openMainPage().clickToSearchField();
-        log.info("Нажимаем на поле поиска");
+        log.info("нажать на поле поиска");
 
         mainPage.sendArticulKeys(productId);
-        log.info("Вводим номер артикула и нажимаем ENTER");
+        log.info("ввести номер артикула и нажать ENTER");
 
         mainPage.clickToAddInCurt();
-        log.info("Нажимаем на кнопку 'Добавить в корзину'");
-
-//        PRODUCT_NAME = driver.findElement(By.xpath("//div[@class='product-page__header']")).getText();
-//        log.info("Копируем имя товара");
-//
-//        String PRODUCT_NAME2 = driver.findElement(By.xpath("//a[@class='good-info__title j-product-popup']")).getText();
-//        Assertions.assertEquals(PRODUCT_NAME, PRODUCT_NAME2);
-//        log.info("Assert проверка на название товара пройдена");
-
+        log.info("нажать на кнопку 'Добавить в корзину'");
 
         mainPage.clickBucketButton();
-        log.info("Нажимаем на кнопку 'Корзина'");
+        log.info("нажать на кнопку 'Корзина'");
 
         Assertions.assertEquals("1", mainPage.takingNumberInCurt());
-        log.info("Проверяем кол-во товаров в корзине");
+        log.info("проверить кол-во товаров в корзине");
 
         mainPage.clickToDeleteCurt();
         log.info("Удаляем из корзины");
 
         TEXT = driver.findElement(By.xpath("//div[@class='basket-empty__wrap']//h1[@class='section-header basket-empty__title']")).getText();
         Assertions.assertEquals(TEXT, "В корзине пока пусто");
-        log.info("Проверяем кол-во товаров в корзине");
+        log.info("проверить кол-во товаров в корзине");
     }
 
 
